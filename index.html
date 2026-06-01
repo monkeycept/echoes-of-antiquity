@@ -6,53 +6,17 @@
     <title>Echoes of Antiquity • 10 Foundational Manuscripts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Three.js CDN for WebGL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap');
         
-        :root {
-            --parchment: #f4e9d8;
-        }
-        
-        body {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        
-        .heading-serif {
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-        
-        .manuscript-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .manuscript-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        
-        .section-header {
-            font-family: 'Playfair Display', Georgia, serif;
-            letter-spacing: -0.025em;
-        }
-        
-        .ancient-text {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-style: italic;
-        }
-        
-        .filter-active {
-            background-color: #854d0e;
-            color: white;
-            border-color: #854d0e;
-        }
-        
-        .manuscript-grid {
-            scrollbar-width: thin;
-        }
-        
-        .gold-accent {
-            color: #d4af77;
-        }
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-serif { font-family: 'Playfair Display', Georgia, serif; }
+        .manuscript-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .manuscript-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .section-header { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.025em; }
+        .webgl-container { border-radius: 24px; overflow: hidden; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
@@ -64,19 +28,15 @@
                     <div class="w-9 h-9 bg-gradient-to-br from-amber-700 to-yellow-800 rounded-full flex items-center justify-center">
                         <i class="fa-solid fa-scroll text-white text-xl"></i>
                     </div>
-                    <div>
-                        <span class="font-semibold tracking-tight text-2xl">Echoes of Antiquity</span>
-                    </div>
+                    <span class="font-semibold tracking-tight text-2xl">Echoes of Antiquity</span>
                 </div>
-                
-                <div class="flex items-center gap-x-4">
-                    <a href="#explore" class="px-4 py-2 text-sm hover:text-amber-400 transition-colors">Explore the Texts</a>
-                    <a href="#about" class="px-4 py-2 text-sm hover:text-amber-400 transition-colors">About</a>
-                    <button onclick="window.location.reload()" 
-                            class="px-5 py-2 text-sm border border-zinc-700 hover:bg-zinc-900 rounded-xl flex items-center gap-x-2 transition-all">
-                        <i class="fa-solid fa-sync text-xs"></i>
-                        <span>Refresh</span>
-                    </button>
+                <div class="flex items-center gap-x-4 text-sm">
+                    <a href="#explore" class="px-4 py-2 hover:text-amber-400 transition-colors">Collection</a>
+                    <a href="#webgl" class="px-4 py-2 hover:text-amber-400 transition-colors">3D Experience</a>
+                    <a href="#about" class="px-4 py-2 hover:text-amber-400 transition-colors">About</a>
+                    <a href="https://github.com/monkeycept/echoes-of-antiquity" target="_blank" class="px-5 py-2 border border-zinc-700 hover:bg-zinc-900 rounded-2xl flex items-center gap-x-2">
+                        <i class="fa-brands fa-github"></i> <span>GitHub</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -87,30 +47,13 @@
         <div class="max-w-4xl">
             <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-2xl bg-zinc-900 border border-zinc-800 mb-6">
                 <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span class="text-sm font-medium tracking-widest">10 MANUSCRIPTS THAT SHAPED CIVILIZATION</span>
+                <span class="text-sm font-medium tracking-widest">10 MANUSCRIPTS • WEBGL POWERED</span>
             </div>
-            
-            <h1 class="text-7xl leading-none tracking-tighter font-semibold section-header mb-6">
-                Echoes of<br>Antiquity
-            </h1>
-            
-            <p class="max-w-lg text-xl text-zinc-400">
-                Ten extraordinary ancient texts and manuscripts. 
-                From the builders of the pyramids to the earliest printed books — 
-                direct access to the sources that defined knowledge, medicine, philosophy, and faith.
-            </p>
-            
+            <h1 class="text-7xl leading-none tracking-tighter font-semibold section-header mb-6">Echoes of<br>Antiquity</h1>
+            <p class="max-w-lg text-xl text-zinc-400">Ten extraordinary ancient texts. From pyramid logistics to the birth of printing — now with an immersive WebGL experience.</p>
             <div class="flex items-center gap-x-4 mt-8">
-                <a href="#explore" 
-                   class="px-8 py-4 bg-white text-zinc-950 hover:bg-amber-100 transition-colors rounded-2xl font-semibold flex items-center gap-x-3 text-lg">
-                    <span>Browse the Collection</span>
-                    <i class="fa-solid fa-arrow-down"></i>
-                </a>
-                <a href="https://github.com/monkeycept/echoes-of-antiquity" target="_blank"
-                   class="px-6 py-4 border border-zinc-700 hover:bg-zinc-900 transition-colors rounded-2xl flex items-center gap-x-3">
-                    <i class="fa-brands fa-github"></i>
-                    <span>View on GitHub</span>
-                </a>
+                <a href="#explore" class="px-8 py-4 bg-white text-zinc-950 hover:bg-amber-100 transition-colors rounded-2xl font-semibold flex items-center gap-x-3 text-lg">Browse Collection</a>
+                <a href="#webgl" class="px-6 py-4 border border-zinc-700 hover:bg-zinc-900 transition-colors rounded-2xl flex items-center gap-x-3 text-lg"><i class="fa-solid fa-cube"></i> <span>Enter 3D Archive</span></a>
             </div>
         </div>
     </div>
@@ -118,431 +61,212 @@
     <!-- Stats -->
     <div class="max-w-screen-2xl mx-auto px-8 pb-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold tracking-tighter">~4500</div>
-                <div class="text-sm text-zinc-500 mt-1">Years of written knowledge</div>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold tracking-tighter">10</div>
-                <div class="text-sm text-zinc-500 mt-1">Foundational manuscripts</div>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold tracking-tighter">7</div>
-                <div class="text-sm text-zinc-500 mt-1">Civilizations represented</div>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-                <div class="text-4xl font-semibold tracking-tighter">100%</div>
-                <div class="text-sm text-zinc-500 mt-1">Open access links</div>
-            </div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6"><div class="text-4xl font-semibold tracking-tighter">~4500</div><div class="text-sm text-zinc-500 mt-1">Years of written knowledge</div></div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6"><div class="text-4xl font-semibold tracking-tighter">10</div><div class="text-sm text-zinc-500 mt-1">Foundational manuscripts</div></div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6"><div class="text-4xl font-semibold tracking-tighter">WebGL</div><div class="text-sm text-zinc-500 mt-1">Immersive 3D experience</div></div>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6"><div class="text-4xl font-semibold tracking-tighter">100%</div><div class="text-sm text-zinc-500 mt-1">Open access</div></div>
         </div>
     </div>
 
-    <!-- Explore Section -->
+    <!-- Collection -->
     <div id="explore" class="max-w-screen-2xl mx-auto px-8 pt-8 pb-16">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-y-4">
-            <div>
-                <h2 class="section-header text-5xl tracking-tighter">The Collection</h2>
-                <p class="text-zinc-400 mt-2">Click any card to explore details • Direct PDF links included</p>
-            </div>
-            
-            <!-- Search and Filters -->
+            <div><h2 class="section-header text-5xl tracking-tighter">The Collection</h2><p class="text-zinc-400 mt-2">Click cards for details • Direct PDF links</p></div>
             <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <div class="relative flex-1 md:w-72">
-                    <i class="fa-solid fa-search absolute left-4 top-3.5 text-zinc-500"></i>
-                    <input id="search-input" 
-                           type="text" 
-                           placeholder="Search manuscripts..." 
-                           class="w-full bg-zinc-900 border border-zinc-700 focus:border-amber-700 pl-11 py-3 rounded-2xl text-sm outline-none">
-                </div>
-                
-                <div class="flex gap-2 flex-wrap" id="filters">
-                    <!-- Filters populated by JS -->
-                </div>
+                <div class="relative flex-1 md:w-72"><i class="fa-solid fa-search absolute left-4 top-3.5 text-zinc-500"></i><input id="search-input" type="text" placeholder="Search manuscripts..." class="w-full bg-zinc-900 border border-zinc-700 focus:border-amber-700 pl-11 py-3 rounded-2xl text-sm outline-none"></div>
+                <div class="flex gap-2 flex-wrap" id="filters"></div>
             </div>
         </div>
+        <div id="manuscripts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+    </div>
 
-        <!-- Manuscripts Grid -->
-        <div id="manuscripts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Populated dynamically by JavaScript -->
+    <!-- WEBGL SECTION -->
+    <div id="webgl" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-zinc-800">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-x-2 px-4 py-1 rounded-2xl bg-zinc-900 border border-zinc-700 mb-4"><i class="fa-solid fa-cube text-amber-400"></i> <span class="text-sm font-medium tracking-widest">POWERED BY WEBGL + THREE.JS</span></div>
+            <h2 class="section-header text-5xl tracking-tighter">Immersive 3D Archive</h2>
+            <p class="text-zinc-400 mt-3 max-w-md mx-auto">Drag to rotate the ancient scroll • Scroll to zoom. A digital reconstruction powered by WebGL.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <div class="webgl-container bg-black rounded-3xl overflow-hidden border border-zinc-700" style="height: 520px;">
+                <canvas id="webgl-canvas" class="w-full h-full"></canvas>
+            </div>
+            <p class="text-center text-xs text-zinc-500 mt-3">Interactive 3D scroll • Mouse drag to rotate • Wheel to zoom</p>
         </div>
     </div>
 
-    <!-- About Section -->
     <div id="about" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-zinc-800">
-        <div class="max-w-3xl">
-            <h2 class="section-header text-4xl tracking-tight mb-4">Why These Texts Matter</h2>
-            <div class="prose prose-invert text-zinc-400">
-                <p>These ten manuscripts represent pivotal moments in human intellectual history. They are not just relics — they are living documents that reveal how ancient societies understood the world, governed themselves, healed the sick, and sought meaning.</p>
-                
-                <p class="mt-4">From the practical engineering logs of pyramid builders to the philosophical depth of the Derveni Papyrus and the artistic pinnacle of the Book of Kells, each offers a window into civilizations that continue to shape our own.</p>
-            </div>
-            
-            <div class="mt-8 flex items-center gap-x-4 text-sm">
-                <div class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-2xl flex items-center gap-x-2">
-                    <i class="fa-solid fa-globe text-amber-400"></i>
-                    <span>All links point to open scholarly sources</span>
-                </div>
-            </div>
-        </div>
+        <div class="max-w-3xl"><h2 class="section-header text-4xl tracking-tight mb-4">Why These Texts Matter</h2><p class="text-zinc-400">These manuscripts are portals to lost worlds. WebGL lets us interact with them in new, visceral ways — bringing the weight of history into the present.</p></div>
     </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-zinc-800 py-8">
-        <div class="max-w-screen-2xl mx-auto px-8 text-sm text-zinc-500 flex flex-col md:flex-row md:items-center justify-between gap-y-3">
-            <div>
-                Curated collection • Deployed on <a href="https://vercel.com" target="_blank" class="underline hover:text-zinc-300">Vercel</a>
-            </div>
-            <div class="flex gap-x-5">
-                <a href="https://github.com/monkeycept/echoes-of-antiquity" target="_blank" class="hover:text-zinc-300">GitHub</a>
-                <span>•</span>
-                <span>Built for exploration</span>
-            </div>
-        </div>
-    </footer>
+    <footer class="border-t border-zinc-800 py-8"><div class="max-w-screen-2xl mx-auto px-8 text-sm text-zinc-500 flex justify-between"><div>Deployed on Vercel • WebGL by Three.js</div><div><a href="https://github.com/monkeycept/echoes-of-antiquity" class="hover:text-zinc-300">Source on GitHub</a></div></div></footer>
 
     <!-- Modal -->
-    <div id="modal" onclick="if (event.target.id === 'modal') closeModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+    <div id="modal" onclick="if (event.target.id==='modal') closeModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur z-[100] flex items-center justify-center p-4">
         <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 border border-zinc-700 max-w-2xl w-full rounded-3xl overflow-hidden">
-            <div class="px-8 py-6 border-b border-zinc-700 flex justify-between items-center">
-                <div id="modal-title" class="text-2xl font-semibold tracking-tight"></div>
-                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-2xl leading-none">&times;</button>
-            </div>
-            
-            <div class="p-8">
-                <div id="modal-meta" class="flex items-center gap-x-3 text-sm mb-6"></div>
-                
-                <div id="modal-description" class="text-zinc-300 leading-relaxed text-[15px]"></div>
-                
-                <div class="mt-8 pt-6 border-t border-zinc-700">
-                    <a id="modal-link" target="_blank" 
-                       class="inline-flex items-center gap-x-3 px-6 py-3.5 bg-white hover:bg-amber-100 text-zinc-950 font-semibold rounded-2xl transition-colors">
-                        <i class="fa-solid fa-external-link-alt"></i>
-                        <span>Open Full PDF / Study</span>
-                    </a>
-                </div>
-            </div>
+            <div class="px-8 py-6 border-b border-zinc-700 flex justify-between"><div id="modal-title" class="text-2xl font-semibold"></div><button onclick="closeModal()" class="text-3xl">&times;</button></div>
+            <div class="p-8"><div id="modal-meta" class="flex gap-3 mb-6 text-sm"></div><div id="modal-description" class="text-zinc-300"></div><div class="mt-8"><a id="modal-link" target="_blank" class="px-6 py-3.5 bg-white text-zinc-950 font-semibold rounded-2xl flex items-center gap-x-3 w-fit">Open PDF</a></div></div>
         </div>
     </div>
 
     <script>
-        // Tailwind script
-        function initializeTailwind() {
-            document.documentElement.style.setProperty('--accent', '#854d0e');
-        }
-
-        // Data for the 10 manuscripts
         const manuscripts = [
-            {
-                id: 1,
-                title: "Diary of Merer",
-                era: "c. 2550 BCE",
-                culture: "Egyptian",
-                category: "egyptian",
-                short: "The oldest known papyrus document — a daily logbook kept by inspector Merer detailing the transport of limestone for the Great Pyramid of Khufu.",
-                significance: "Provides direct evidence of the logistics and workforce behind one of humanity's greatest architectural achievements.",
-                long: "Discovered in 2013 at Wadi al-Jarf, the Diary of Merer is the oldest surviving papyrus. It records the activities of a team of sailors and workers moving stone from the Tura quarries across the Nile to the Giza plateau. It offers unprecedented insight into the organization of labor during the reign of Khufu.",
-                link: "https://arxiv.org/pdf/2411.08061",
-                linkLabel: "arXiv Translation & Study (PDF)"
-            },
-            {
-                id: 2,
-                title: "Prisse Papyrus",
-                era: "c. 2000–1800 BCE",
-                culture: "Egyptian",
-                category: "egyptian",
-                short: "Contains the oldest surviving copy of the Instructions of Ptahhotep, foundational wisdom literature offering advice on ethics, governance, and daily life.",
-                significance: "One of the earliest examples of didactic literature and moral philosophy in human history.",
-                long: "The Prisse Papyrus is a key source for Middle Kingdom literature. It preserves the maxims of Ptahhotep, vizier to the pharaoh, which have influenced ethical thought for millennia. It also contains other important texts on Egyptian values and administration.",
-                link: "https://llx.fr/site/wp-content/uploads/2011/04/THE-PRISSE-PAPYRUS-Ragazzoli-transcript.pdf",
-                linkLabel: "Full Transcript (PDF)"
-            },
-            {
-                id: 3,
-                title: "Ebers Papyrus",
-                era: "c. 1550 BCE",
-                culture: "Egyptian",
-                category: "egyptian",
-                short: "One of the oldest and most comprehensive medical documents from antiquity, listing hundreds of remedies, diagnoses, and treatments.",
-                significance: "A cornerstone of the history of medicine, revealing sophisticated diagnostic and pharmacological knowledge.",
-                long: "Named after Egyptologist Georg Ebers, this massive papyrus roll contains 877 recipes and treatments for ailments ranging from eye diseases to digestive issues. It combines practical medicine with magical incantations, reflecting the holistic worldview of ancient Egyptian healers.",
-                link: "http://www.ask-force.org/web/India/Bryan-CP-The-Papyrus-Ebers-searchable-1930.pdf",
-                linkLabel: "Searchable PDF (1930 Translation)"
-            },
-            {
-                id: 4,
-                title: "Etruscan Gold Book",
-                era: "c. 500 BCE",
-                culture: "Etruscan",
-                category: "etruscan",
-                short: "Rare gold sheets inscribed with Etruscan text — among the earliest surviving examples of a book-like format in precious metal.",
-                significance: "Offers rare insight into Etruscan language and religious practices through durable metal 'pages'.",
-                long: "The Etruscan Gold Book (or gold tablets from Pyrgi and related finds) represents an extraordinary survival. These thin gold sheets were used for important religious or dedicatory inscriptions, demonstrating advanced metalworking and literacy in pre-Roman Italy.",
-                link: "https://en.wikipedia.org/wiki/Pyrgi_Tablets", // Note: Wikipedia as proxy; user noted limited full PDFs
-                linkLabel: "Learn more & related sources"
-            },
-            {
-                id: 5,
-                title: "Derveni Papyrus",
-                era: "c. 340 BCE",
-                culture: "Greek",
-                category: "greek",
-                short: "The oldest surviving European manuscript. A philosophical commentary on an Orphic poem blending theology and early rational inquiry.",
-                significance: "Bridges religion and philosophy in Classical Greece and is the earliest European papyrus to survive.",
-                long: "Found in a tomb near Derveni, this carbonized papyrus is the oldest European book manuscript. It comments on a lost Orphic theogony and shows how Greek thinkers were already engaging in allegorical and proto-scientific interpretation of myth.",
-                link: "https://archive.org/details/dervenipapyrus0000unse",
-                linkLabel: "Archive.org Full Document"
-            },
-            {
-                id: 6,
-                title: "Dead Sea Scrolls",
-                era: "3rd c. BCE – 1st c. CE",
-                culture: "Jewish",
-                category: "jewish",
-                short: "Approximately 900 ancient Jewish manuscripts discovered in the Qumran caves, including the oldest known copies of the Hebrew Bible.",
-                significance: "Revolutionized biblical scholarship and our understanding of Second Temple Judaism and early Christianity.",
-                long: "Discovered between 1946 and 1956, the Dead Sea Scrolls include biblical texts, sectarian rules, and apocalyptic writings. They provide invaluable context for the development of Judaism and the historical background of Christianity.",
-                link: "https://couldbeanonymous.wordpress.com/wp-content/uploads/2019/04/complete-scrolls.pdf",
-                linkLabel: "Complete Scrolls Collection (PDF)"
-            },
-            {
-                id: 7,
-                title: "Nag Hammadi Codices",
-                era: "4th c. CE",
-                culture: "Gnostic / Early Christian",
-                category: "gnostic",
-                short: "A library of 13 codices containing over 50 Gnostic texts, including the Gospel of Thomas and other previously unknown scriptures.",
-                significance: "Transformed our understanding of early Christianity and alternative spiritual traditions suppressed in later centuries.",
-                long: "Discovered in 1945 near Nag Hammadi, Egypt, these leather-bound codices contain Gnostic gospels, treatises, and apocryphal works. They reveal a rich diversity of early Christian thought that was largely lost until their rediscovery.",
-                link: "https://archive.org/details/pdfy-VQak8K5FtBf5Aa6X",
-                linkLabel: "Full PDF Collection (Archive.org)"
-            },
-            {
-                id: 8,
-                title: "Codex Sinaiticus",
-                era: "c. 330–360 CE",
-                culture: "Early Christian / Byzantine",
-                category: "christian",
-                short: "The oldest complete manuscript of the New Testament and one of the most important witnesses to the text of the Bible.",
-                significance: "Fundamental for textual criticism of the New Testament and the history of the Christian canon.",
-                long: "Written in the 4th century, Codex Sinaiticus is one of the four great uncial codices. It contains the complete New Testament along with much of the Septuagint Old Testament and is now dispersed between libraries in London, Leipzig, and St. Petersburg.",
-                link: "https://isidore.co/misc/Res%20pro%20Deo/ITOPL_OCR-layer-only/3a.%20Scripture/Codex%20Sinaiticus%20N.T.%20(1911)_OCR.pdf",
-                linkLabel: "1911 OCR PDF Edition"
-            },
-            {
-                id: 9,
-                title: "Book of Kells",
-                era: "c. 800 CE",
-                culture: "Insular / Celtic Christian",
-                category: "celtic",
-                short: "A masterpiece of Western calligraphy and illumination featuring the four Gospels with extraordinarily intricate Celtic artwork.",
-                significance: "Represents the pinnacle of medieval manuscript art and Insular culture.",
-                long: "Created around 800 CE, likely on the island of Iona or at Kells in Ireland, the Book of Kells is celebrated for its lavish decoration, complex iconography, and fusion of Christian and Celtic artistic traditions. It is housed at Trinity College Dublin.",
-                link: "https://archive.org/details/book-of-kells",
-                linkLabel: "High-quality PDF scans (Archive.org)"
-            },
-            {
-                id: 10,
-                title: "Diamond Sutra",
-                era: "868 CE",
-                culture: "Buddhist (Tang China)",
-                category: "buddhist",
-                short: "The world's oldest dated printed book — a woodblock-printed copy of this key Mahayana Buddhist text.",
-                significance: "Marks the birth of printing technology and the mass dissemination of knowledge.",
-                long: "Printed in 868 CE during the Tang Dynasty and discovered in the Dunhuang Caves, the Diamond Sutra is the earliest complete printed book with a date. It demonstrates advanced woodblock printing techniques centuries before Gutenberg and played a major role in spreading Buddhist teachings across East Asia.",
-                link: "https://www.lifelonglearningcollaborative.org/silkroads/articles/diamond-sutra-translation.pdf",
-                linkLabel: "English Translation (PDF)"
-            }
+            {id:1,title:"Diary of Merer",era:"c. 2550 BCE",culture:"Egyptian",category:"egyptian",short:"Oldest known papyrus — logbook of stone transport for Khufu's Great Pyramid.",long:"Discovered in 2013. Records inspector Merer moving limestone from Tura to Giza for the Great Pyramid.",link:"https://arxiv.org/pdf/2411.08061",linkLabel:"arXiv Study"},
+            {id:2,title:"Prisse Papyrus",era:"c. 2000–1800 BCE",culture:"Egyptian",category:"egyptian",short:"Oldest copy of the Instructions of Ptahhotep — early wisdom literature.",long:"Contains the maxims of Ptahhotep, one of the earliest works of moral philosophy.",link:"https://llx.fr/site/wp-content/uploads/2011/04/THE-PRISSE-PAPYRUS-Ragazzoli-transcript.pdf",linkLabel:"Transcript"},
+            {id:3,title:"Ebers Papyrus",era:"c. 1550 BCE",culture:"Egyptian",category:"egyptian",short:"One of the oldest comprehensive medical documents from antiquity.",long:"Contains hundreds of remedies and diagnoses. A foundational text in the history of medicine.",link:"http://www.ask-force.org/web/India/Bryan-CP-The-Papyrus-Ebers-searchable-1930.pdf",linkLabel:"1930 Translation"},
+            {id:4,title:"Etruscan Gold Book",era:"c. 500 BCE",culture:"Etruscan",category:"etruscan",short:"Rare gold sheets with Etruscan text — early durable book format.",long:"Gold tablets from Pyrgi offering rare insight into Etruscan language and religion.",link:"https://en.wikipedia.org/wiki/Pyrgi_Tablets",linkLabel:"Learn more"},
+            {id:5,title:"Derveni Papyrus",era:"c. 340 BCE",culture:"Greek",category:"greek",short:"Oldest surviving European manuscript — philosophical commentary on Orphic poetry.",long:"The earliest European book manuscript. Blends religion and early rational thought.",link:"https://archive.org/details/dervenipapyrus0000unse",linkLabel:"Full Document"},
+            {id:6,title:"Dead Sea Scrolls",era:"3rd c. BCE – 1st c. CE",culture:"Jewish",category:"jewish",short:"~900 manuscripts including the oldest copies of the Hebrew Bible.",long:"Discovered in Qumran. Revolutionized biblical scholarship and understanding of early Judaism.",link:"https://couldbeanonymous.wordpress.com/wp-content/uploads/2019/04/complete-scrolls.pdf",linkLabel:"Complete Collection"},
+            {id:7,title:"Nag Hammadi Codices",era:"4th c. CE",culture:"Gnostic",category:"gnostic",short:"13 codices containing Gnostic texts including the Gospel of Thomas.",long:"Discovered in 1945. Transformed our view of early Christian diversity.",link:"https://archive.org/details/pdfy-VQak8K5FtBf5Aa6X",linkLabel:"Full Collection"},
+            {id:8,title:"Codex Sinaiticus",era:"c. 330–360 CE",culture:"Early Christian",category:"christian",short:"Oldest complete manuscript of the New Testament.",long:"One of the most important biblical manuscripts for textual criticism.",link:"https://isidore.co/misc/Res%20pro%20Deo/ITOPL_OCR-layer-only/3a.%20Scripture/Codex%20Sinaiticus%20N.T.%20(1911)_OCR.pdf",linkLabel:"1911 Edition"},
+            {id:9,title:"Book of Kells",era:"c. 800 CE",culture:"Celtic Christian",category:"celtic",short:"Masterpiece of medieval illumination — the four Gospels in Celtic art.",long:"Created ~800 CE. World-renowned for its intricate decoration and artistic genius.",link:"https://archive.org/details/book-of-kells",linkLabel:"High-quality scans"},
+            {id:10,title:"Diamond Sutra",era:"868 CE",culture:"Buddhist (China)",category:"buddhist",short:"World's oldest dated printed book — woodblock printed Buddhist text.",long:"Printed in 868 CE in China. Marks the dawn of printing technology.",link:"https://www.lifelonglearningcollaborative.org/silkroads/articles/diamond-sutra-translation.pdf",linkLabel:"Translation"}
         ];
 
         let activeFilter = 'all';
 
-        function createManuscriptCard(manuscript) {
+        function createCard(m) {
             const card = document.createElement('div');
-            card.className = `manuscript-card bg-zinc-900 border border-zinc-700 rounded-3xl overflow-hidden cursor-pointer group`;
-            card.dataset.category = manuscript.category;
-            card.dataset.title = manuscript.title.toLowerCase();
-            
-            card.innerHTML = `
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <div class="text-xs uppercase tracking-[1.5px] text-amber-600 font-medium">${manuscript.era}</div>
-                            <h3 class="text-2xl font-semibold tracking-tight mt-1 leading-tight">${manuscript.title}</h3>
-                            <div class="text-sm text-zinc-400 mt-1">${manuscript.culture}</div>
-                        </div>
-                        <div class="text-right">
-                            <div class="inline-block px-3 py-1 text-xs rounded-2xl bg-zinc-800 text-zinc-400 group-hover:bg-amber-900/30 transition-colors">
-                                #${manuscript.id}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p class="text-zinc-400 text-[15px] leading-relaxed line-clamp-3 mb-5">
-                        ${manuscript.short}
-                    </p>
-                    
-                    <div class="flex items-center justify-between">
-                        <button onclick="event.stopImmediatePropagation(); showModal(${manuscript.id});" 
-                                class="text-sm px-4 py-2 border border-zinc-600 hover:bg-zinc-800 rounded-2xl flex items-center gap-x-2 transition-colors">
-                            <span>Details</span>
-                        </button>
-                        
-                        <a href="${manuscript.link}" target="_blank" 
-                           onclick="event.stopImmediatePropagation();"
-                           class="text-sm flex items-center gap-x-2 px-4 py-2 bg-zinc-800 hover:bg-amber-800 text-white rounded-2xl transition-colors">
-                            <span class="font-medium">View PDF</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            `;
-            
-            card.onclick = () => showModal(manuscript.id);
+            card.className = 'manuscript-card bg-zinc-900 border border-zinc-700 rounded-3xl overflow-hidden cursor-pointer';
+            card.innerHTML = `<div class="p-6"><div class="flex justify-between items-start"><div><div class="text-xs text-amber-600 tracking-widest">${m.era}</div><h3 class="text-2xl font-semibold tracking-tight">${m.title}</h3><div class="text-sm text-zinc-400">${m.culture}</div></div><div class="text-xs px-3 py-1 bg-zinc-800 rounded-2xl">#${m.id}</div></div><p class="mt-4 text-zinc-400 text-[15px] line-clamp-3">${m.short}</p><div class="mt-5 flex gap-3"><button onclick="event.stopImmediatePropagation(); showModal(${m.id})" class="px-5 py-2 text-sm border border-zinc-600 hover:bg-zinc-800 rounded-2xl">Details</button><a href="${m.link}" target="_blank" onclick="event.stopImmediatePropagation()" class="px-5 py-2 text-sm bg-zinc-800 hover:bg-amber-800 rounded-2xl flex items-center gap-x-2"><span>View PDF</span></a></div></div>`;
+            card.onclick = () => showModal(m.id);
             return card;
         }
 
-        function renderManuscripts(filteredManuscripts) {
+        function renderGrid(list) {
             const grid = document.getElementById('manuscripts-grid');
             grid.innerHTML = '';
-            
-            if (filteredManuscripts.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-zinc-500">No manuscripts found matching your search.</div>`;
-                return;
-            }
-            
-            filteredManuscripts.forEach(manuscript => {
-                const card = createManuscriptCard(manuscript);
-                grid.appendChild(card);
-            });
+            list.forEach(m => grid.appendChild(createCard(m)));
         }
 
-        function filterManuscripts() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
-            
+        function filterAndRender() {
+            const term = document.getElementById('search-input').value.toLowerCase();
             let filtered = manuscripts;
-            
-            // Apply category filter
-            if (activeFilter !== 'all') {
-                filtered = filtered.filter(m => m.category === activeFilter);
-            }
-            
-            // Apply search
-            if (searchTerm) {
-                filtered = filtered.filter(m => 
-                    m.title.toLowerCase().includes(searchTerm) ||
-                    m.short.toLowerCase().includes(searchTerm) ||
-                    m.culture.toLowerCase().includes(searchTerm) ||
-                    m.era.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            renderManuscripts(filtered);
+            if (activeFilter !== 'all') filtered = filtered.filter(m => m.category === activeFilter);
+            if (term) filtered = filtered.filter(m => m.title.toLowerCase().includes(term) || m.short.toLowerCase().includes(term));
+            renderGrid(filtered);
         }
 
-        function setupFilters() {
-            const filterContainer = document.getElementById('filters');
-            const categories = [
-                { key: 'all', label: 'All' },
-                { key: 'egyptian', label: 'Egyptian' },
-                { key: 'etruscan', label: 'Etruscan' },
-                { key: 'greek', label: 'Greek' },
-                { key: 'jewish', label: 'Jewish' },
-                { key: 'gnostic', label: 'Gnostic' },
-                { key: 'christian', label: 'Christian' },
-                { key: 'celtic', label: 'Celtic' },
-                { key: 'buddhist', label: 'Buddhist' }
-            ];
-            
-            categories.forEach(cat => {
+        function setupUI() {
+            document.getElementById('search-input').oninput = filterAndRender;
+            const container = document.getElementById('filters');
+            ['all','egyptian','etruscan','greek','jewish','gnostic','christian','celtic','buddhist'].forEach(cat => {
                 const btn = document.createElement('button');
-                btn.className = `px-4 py-1.5 text-sm rounded-2xl border transition-all ${cat.key === 'all' ? 'filter-active border-amber-700' : 'border-zinc-700 hover:bg-zinc-800'}`;
-                btn.textContent = cat.label;
-                btn.dataset.filter = cat.key;
-                
-                btn.onclick = () => {
-                    // Remove active from all
-                    document.querySelectorAll('#filters button').forEach(b => b.classList.remove('filter-active', 'border-amber-700'));
-                    btn.classList.add('filter-active', 'border-amber-700');
-                    
-                    activeFilter = cat.key;
-                    filterManuscripts();
-                };
-                
-                filterContainer.appendChild(btn);
+                btn.className = `px-4 py-1.5 text-sm rounded-2xl border transition-all ${cat==='all' ? 'bg-amber-800 border-amber-700' : 'border-zinc-700 hover:bg-zinc-800'}`;
+                btn.textContent = cat === 'all' ? 'All' : cat[0].toUpperCase() + cat.slice(1);
+                btn.onclick = () => { document.querySelectorAll('#filters button').forEach(b => b.classList.remove('bg-amber-800','border-amber-700')); btn.classList.add('bg-amber-800','border-amber-700'); activeFilter = cat; filterAndRender(); };
+                container.appendChild(btn);
             });
+            renderGrid(manuscripts);
         }
 
         function showModal(id) {
-            const manuscript = manuscripts.find(m => m.id === id);
-            if (!manuscript) return;
-            
-            document.getElementById('modal-title').innerHTML = manuscript.title;
-            
-            const metaHTML = `
-                <div class="px-3 py-1 bg-zinc-800 rounded-2xl text-xs">${manuscript.era}</div>
-                <div class="px-3 py-1 bg-zinc-800 rounded-2xl text-xs">${manuscript.culture}</div>
-            `;
-            document.getElementById('modal-meta').innerHTML = metaHTML;
-            
-            document.getElementById('modal-description').innerHTML = `
-                <p class="mb-4">${manuscript.long}</p>
-                <p class="text-amber-300/90 text-sm"><strong>Significance:</strong> ${manuscript.significance}</p>
-            `;
-            
+            const m = manuscripts.find(x => x.id === id);
+            document.getElementById('modal-title').textContent = m.title;
+            document.getElementById('modal-meta').innerHTML = `<span class="px-3 py-1 bg-zinc-800 rounded-2xl text-xs">${m.era}</span> <span class="px-3 py-1 bg-zinc-800 rounded-2xl text-xs">${m.culture}</span>`;
+            document.getElementById('modal-description').innerHTML = m.long;
             const linkEl = document.getElementById('modal-link');
-            linkEl.href = manuscript.link;
-            linkEl.innerHTML = `<i class="fa-solid fa-external-link-alt mr-2"></i> ${manuscript.linkLabel}`;
-            
+            linkEl.href = m.link;
+            linkEl.innerHTML = `Open ${m.linkLabel} <i class="fa-solid fa-external-link-alt ml-2 text-xs"></i>`;
             document.getElementById('modal').classList.remove('hidden');
             document.getElementById('modal').classList.add('flex');
         }
 
         function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
+            const m = document.getElementById('modal');
+            m.classList.remove('flex');
+            m.classList.add('hidden');
         }
 
-        function setupSearch() {
-            const searchInput = document.getElementById('search-input');
-            searchInput.addEventListener('input', () => {
-                filterManuscripts();
+        // ==================== WEBGL THREE.JS ====================
+        function initThreeJS() {
+            const canvas = document.getElementById('webgl-canvas');
+            if (!canvas) return;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(55, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+            camera.position.set(0, 1.5, 5);
+
+            // Lighting
+            scene.add(new THREE.AmbientLight(0x666666, 0.7));
+            const dirLight = new THREE.DirectionalLight(0xfff0d0, 1.1);
+            dirLight.position.set(4, 10, 6);
+            scene.add(dirLight);
+
+            // Ancient Scroll (cylinder)
+            const scrollGeo = new THREE.CylinderGeometry(1.6, 1.6, 5.2, 80, 1, true);
+            const scrollMat = new THREE.MeshPhongMaterial({ color: 0x8d6e4f, shininess: 6, side: THREE.DoubleSide });
+            const scroll = new THREE.Mesh(scrollGeo, scrollMat);
+            scroll.rotation.x = Math.PI / 2;
+            scene.add(scroll);
+
+            // Subtle text lines
+            for (let i = -2.2; i <= 2.2; i += 0.85) {
+                const line = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 4.6, 6), new THREE.MeshPhongMaterial({ color: 0x3a2a1f }));
+                line.position.set(0, i, 1.65);
+                line.rotation.x = Math.PI / 2;
+                scroll.add(line);
+            }
+
+            // Rollers
+            const rollerMat = new THREE.MeshPhongMaterial({ color: 0x5c4033, shininess: 25 });
+            const rollerGeo = new THREE.CylinderGeometry(0.22, 0.22, 5.8, 40);
+            const leftRoller = new THREE.Mesh(rollerGeo, rollerMat);
+            leftRoller.position.y = -2.7;
+            leftRoller.rotation.x = Math.PI / 2;
+            scroll.add(leftRoller);
+            const rightRoller = leftRoller.clone();
+            rightRoller.position.y = 2.7;
+            scroll.add(rightRoller);
+
+            // Interaction variables
+            let isDragging = false;
+            let prevX = 0;
+
+            canvas.addEventListener('mousedown', e => { isDragging = true; prevX = e.clientX; });
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                scroll.rotation.y += (e.clientX - prevX) * 0.004;
+                prevX = e.clientX;
             });
 
-            // Keyboard support
-            document.addEventListener('keydown', function(e) {
-                if (e.key === '/' && document.activeElement.tagName === 'BODY') {
-                    e.preventDefault();
-                    searchInput.focus();
-                }
-                if (e.key === 'Escape') {
-                    const modal = document.getElementById('modal');
-                    if (!modal.classList.contains('hidden')) {
-                        closeModal();
-                    } else {
-                        searchInput.value = '';
-                        filterManuscripts();
-                    }
-                }
+            canvas.addEventListener('wheel', e => {
+                camera.position.z += e.deltaY * 0.008;
+                camera.position.z = Math.max(2.5, Math.min(10, camera.position.z));
             });
+
+            window.addEventListener('resize', () => {
+                renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+                camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                camera.updateProjectionMatrix();
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!isDragging) scroll.rotation.y += 0.0012;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Nice starting angle
+            scroll.rotation.y = 0.8;
         }
 
-        function initializeApp() {
-            initializeTailwind();
-            
-            // Initial render
-            renderManuscripts(manuscripts);
-            
-            // Setup interactivity
-            setupFilters();
-            setupSearch();
-            
-            // Bonus: Press '/' to search
-            console.log('%c[Echoes of Antiquity] Press / to search. ESC to clear or close modal.', 'color:#666');
-        }
+        window.onload = function() {
+            setupUI();
+            setTimeout(initThreeJS, 400); // Initialize WebGL after DOM ready
 
-        // Boot the application
-        window.onload = initializeApp;
+            document.addEventListener('keydown', e => {
+                if (e.key === '/' ) { e.preventDefault(); document.getElementById('search-input').focus(); }
+                if (e.key === 'Escape') { const modal = document.getElementById('modal'); if (!modal.classList.contains('hidden')) closeModal(); }
+            });
+        };
     </script>
 </body>
 </html>
